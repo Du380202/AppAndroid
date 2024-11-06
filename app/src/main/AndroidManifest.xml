@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BookStore"
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.admin.Customer_Detail_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.EditCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.EditAuthorActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.EditBookActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.ViewOrderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.AddCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.AddAuthorActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.AddBookActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.CategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.CustomerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.PublisherActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.AuthorActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.BookActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.admin.OrderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

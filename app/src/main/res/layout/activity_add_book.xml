@@ -85,7 +85,15 @@
                     android:textColor="#333333"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorBookTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Author Spinner -->
             <com.google.android.material.textfield.TextInputLayout
                 android:hint="Tác giả"
@@ -107,7 +115,15 @@
                     android:textSize="16sp"
                     android:popupBackground="@drawable/dropdown_background"/>
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Quantity -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -127,7 +143,15 @@
                     android:textColor="#333333"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Price -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -147,7 +171,15 @@
                     android:textColor="#333333"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Description -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -167,7 +199,42 @@
                     android:textColor="#333333"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tvErrorDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="Năm xuất bản"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/lavender"
+                app:hintTextColor="@color/purple_700">
 
+                <EditText
+                    android:id="@+id/edtPublicationYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tvErrorYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Publisher -->
             <com.google.android.material.textfield.TextInputLayout
                 android:hint="Nhà xuất bản"
@@ -189,7 +256,15 @@
                     android:textSize="16sp"
                     android:popupBackground="@drawable/dropdown_background" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorPublisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Genre -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -211,7 +286,15 @@
                     android:textSize="16sp"
                     android:popupBackground="@drawable/dropdown_background" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Sale Date -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -231,7 +314,15 @@
                     android:textColor="#333333"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/tvErrorDateSale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vui lòng nhập tiêu đề sách"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
             <!-- Save Button -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSave"

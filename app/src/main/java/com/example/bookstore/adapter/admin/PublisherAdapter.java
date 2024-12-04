@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookstore.R;
-import com.example.bookstore.dto.Publisher;
+import com.example.bookstore.model.Publisher;
 
 import java.util.List;
 
@@ -28,16 +28,16 @@ public class PublisherAdapter extends RecyclerView.Adapter<PublisherAdapter.Publ
     @NonNull
     @Override
     public PublisherAdapter.PublisherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_book_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_publisher, parent, false);
         return new PublisherAdapter.PublisherViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PublisherAdapter.PublisherViewHolder holder, int position) {
         Publisher publisher = publishers.get(position);
-        holder.tvPublisherName.setText(publisher.getTvPublisherName());
-        holder.tvPhone.setText(publisher.getTvPhone());
-        holder.publisherImg.setImageResource(publisher.getPublisherImg());
+        holder.tvPublisherName.setText(publisher.getPublisherName());
+        holder.tvPhone.setText(publisher.getHotline());
+        holder.publisherImg.setImageResource(R.drawable.publishinghouse);
     }
 
     @Override

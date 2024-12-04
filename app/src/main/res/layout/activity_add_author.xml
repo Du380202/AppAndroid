@@ -17,7 +17,7 @@
         android:elevation="4dp">
 
         <ImageView
-            android:id="@+id/back_icon"
+            android:id="@+id/back_iconAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -75,7 +75,7 @@
 
 
         <EditText
-            android:id="@+id/edtDescription"
+            android:id="@+id/edtBiography"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Biography"

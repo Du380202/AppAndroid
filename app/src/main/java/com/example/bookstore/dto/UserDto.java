@@ -1,19 +1,19 @@
 package com.example.bookstore.dto;
 
-public class User {
+public class UserDto {
     private int img;
     private String userName;
     private String email;
     private String status;
 
-    public User(int img, String userName, String email, String status) {
+    public UserDto(int img, String userName, String email, String status) {
         this.img = img;
         this.userName = userName;
         this.email = email;
         this.status = status;
     }
 
-    public User(int img, String userName, String email) {
+    public UserDto(int img, String userName, String email) {
         this.img = img;
         this.userName = userName;
         this.email = email;

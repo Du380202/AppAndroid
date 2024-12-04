@@ -1,50 +1,98 @@
 package com.example.bookstore.activity.admin;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookstore.R;
 import com.example.bookstore.adapter.admin.AuthorAdapter;
-import com.example.bookstore.dto.Author;
+import com.example.bookstore.api.admin.AuthorApi;
+import com.example.bookstore.api.admin.CartApi;
+import com.example.bookstore.model.Author;
+import com.example.bookstore.model.Cart;
+import com.example.bookstore.retrofit.ApiService;
+import com.example.bookstore.utils.HttpCodeUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AuthorActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AuthorAdapter adapter;
-    private List<Author> authorList;
-
+    ImageView backIcon;
+    private FloatingActionButton addNewAuthor;
+    private List<com.example.bookstore.model.Author> authorList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_author);
-        recyclerView = findViewById(R.id.recyclerTask);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String limitedText = getLimitedWords("Paulo Coelho sinh tại Rio de Janeiro (Brasil). Ông học đại học trường luật, nhưng đã bỏ học năm 1970 để du lịch qua México, Peru, Bolivia và Chile, cũng như châu Âu và Bắc Phi. Hai năm sau, ông trở về Brasil và bắt đầu soạn lời nhạc pop. Ông cộng tác với những nhạc sĩ pop như Raul Seixas. Năm 1974, ông bị bắt giam một thời gian ngắn vì những hoạt động chống lại chế độ độc tài thời đó ở Brazil.", 5);
-        String limit = getLimitedWords("Dale Breckenridge Carnegie (trước kia là Carnagey cho tới năm 1922 và có thể một thời gian muộn hơn) (24 tháng 11 năm 1888 – 1 tháng 11 năm 1955) là một nhà văn và nhà thuyết trình Mỹ và là người phát triển các lớp tự giáo dục, nghệ thuật bán hàng, huấn luyện đoàn thể, nói trước công chúng và các kỹ năng giao tiếp giữa mọi người. Ra đời trong cảnh nghèo đói tại một trang trại ở Missouri, ông là tác giả cuốn Đắc Nhân Tâm, được xuất bản lần đầu năm 1936, một cuốn sách hàng bán chạy nhất và được biết đến nhiều nhất cho đến tận ngày nay, nội dung nói về cách ứng xử, cư xử trong cuộc sống. Ông cũng viết một cuốn tiểu sử Abraham Lincoln, với tựa đề Lincoln con người chưa biết, và nhiều cuốn sách khác.", 5);
-        authorList = new ArrayList<>();
-        authorList.add(new Author(R.drawable.img_4, "Paulo Coelho", limitedText));
-        authorList.add(new Author(R.drawable.img_5, "Dale Carnegie",  limit));
-        adapter = new AuthorAdapter(authorList, this);
-        recyclerView.setAdapter(adapter);
+        setControl();
+        getData();
+
+        addNewAuthor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AuthorActivity.this, AddAuthorActivity.class);
+                startActivityForResult(intent, HttpCodeUtils.REQUEST_SUCCESS);
+            }
+        });
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getOnBackPressedDispatcher().onBackPressed();
+            }
+        });
+
     }
 
-    private String getLimitedWords(String text, int wordLimit) {
-        String[] words = text.split("\\s+");  // Split text by whitespace
-        if (words.length > wordLimit) {
-            // Join only the first 'wordLimit' words and add "..."
-            return TextUtils.join(" ", Arrays.copyOfRange(words, 0, wordLimit)) + "...";
-        }
-        return text;  // If text has 5 or fewer words, return as is
+    private void setControl() {
+        recyclerView = findViewById(R.id.recyclerTask);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        addNewAuthor = findViewById(R.id.addNewAuthor);
+        backIcon = findViewById(R.id.back_icon);
+
     }
+
+    private void getData() {
+        ApiService apiService = new ApiService();
+        AuthorApi authorApi = apiService.getRetrofit().create(AuthorApi.class);
+        authorApi.getAllAuthor().enqueue(new Callback<List<Author>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Author>> call, @NonNull Response<List<Author>> response) {
+                authorList = response.body();
+                int code = response.code();
+                Log.e("HTTP code", code + "");
+                adapter = new AuthorAdapter(authorList, AuthorActivity.this);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Author>> call, Throwable throwable) {
+                Log.e("LogE", throwable.getMessage());
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == HttpCodeUtils.REQUEST_SUCCESS && resultCode == RESULT_OK) {
+            getData();
+        }
+    }
+
+
 }

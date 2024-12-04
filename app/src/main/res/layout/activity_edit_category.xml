@@ -70,31 +70,44 @@
                 android:padding="12dp" />
         </LinearLayout>
 
-        <!-- Category Information Fields -->
-        <EditText
-            android:id="@+id/edtCategoryName"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Category name"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="#333333"
-            android:textSize="16sp" />
+            android:hint="Giá"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/lavender"
+            app:hintTextColor="@color/purple_700">
 
-        <EditText
-            android:id="@+id/edtDescription"
+            <EditText
+                android:id="@+id/edtCategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Description -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:inputType="textMultiLine"
             android:layout_marginBottom="16dp"
-            android:height="150dp"
-            android:padding="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:textColor="#333333"
-            android:textSize="16sp" />
+            android:hint="Mô tả"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/lavender"
+            app:hintTextColor="@color/purple_700">
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Save and Delete Buttons in Horizontal Layout -->
         <LinearLayout

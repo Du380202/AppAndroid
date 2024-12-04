@@ -43,22 +43,21 @@
         android:padding="16dp"
         android:background="@color/white">
 
-        <!--        &lt;!&ndash; Book Image Section &ndash;&gt;-->
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="horizontal"-->
-        <!--            android:layout_marginBottom="16dp"-->
-        <!--            android:gravity="center">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
 
-        <!--            <ImageView-->
-        <!--                android:id="@+id/imgBookCover"-->
-        <!--                android:layout_width="100dp"-->
-        <!--                android:layout_height="150dp"-->
-        <!--                android:src="@drawable/ic_book_placeholder"-->
-        <!--                android:contentDescription="Book Cover" />-->
-        <!--        </LinearLayout>-->
-
+            <!-- Image Display -->
+            <ImageView
+                android:id="@+id/imgCategoryCover"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_book_placeholder"
+                android:contentDescription="Category Cover Image" />
+        </LinearLayout>
         <!-- Book Information Fields -->
         <EditText
             android:id="@+id/edtCategoryName"
@@ -71,8 +70,6 @@
             android:padding="12dp"
             android:textColor="#333333"
             android:textSize="16sp" />
-
-
 
         <EditText
             android:id="@+id/edtDescription"

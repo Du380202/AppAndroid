@@ -1,76 +1,93 @@
 package com.example.bookstore.dto;
 
-public class Order {
-    private String orderId;
-    private String customerName;
-    private String phoneNumber;
-    private String shippingAddress;
-    private String orderStatus;
-    private String products;
-    private String ngaydat;
-    private String total;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-    public String getTotal() {
-        return total;
+public class Order implements Serializable {
+    private Integer orderId;
+    private String orderDate;
+    private BigDecimal totalPrice;
+    private String email;
+    private String address;
+    private String fullName;
+    private Integer status;
+    private String token;
+
+    //	@JsonIgnore
+    private List<OrderDetail> orderDetails = new ArrayList<>();
+//    private User user;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public Order(String orderId, String orderStatus, String ngaydat, String total) {
-        this.orderId = orderId;
-        this.orderStatus = orderStatus;
-        this.ngaydat = ngaydat;
-        this.total = total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
-
-    public String getNgaydat() {
-        return ngaydat;
-    }
-
-    public void setNgaydat(String ngaydat) {
-        this.ngaydat = ngaydat;
-    }
-
-    // Constructor, getters, and setters
-    public Order(String orderId, String customerName, String phoneNumber, String shippingAddress, String orderStatus, String products) {
-        this.orderId = orderId;
-        this.customerName = customerName;
-        this.phoneNumber = phoneNumber;
-        this.shippingAddress = shippingAddress;
-        this.orderStatus = orderStatus;
-        this.products = products;
-    }
-
-    public void setOrderId(String orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public String getOrderDate() {
+        return orderDate;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
+    public String getEmail() {
+        return email;
     }
 
-    public String getOrderId() { return orderId; }
-    public String getCustomerName() { return customerName; }
-    public String getPhoneNumber() { return phoneNumber; }
-    public String getShippingAddress() { return shippingAddress; }
-    public String getOrderStatus() { return orderStatus; }
-    public String getProducts() { return products; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
 }

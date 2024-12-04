@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="order_status_options">
-        <item>Đã đặt hàng</item>
-        <item>Đang xử lý</item>
-        <item>Đang giao hàng</item>
-        <item>Hoàn thành</item>
-        <item>Đã hủy</item>
+        <item>Chờ xác nhận</item>
+        <item>Đang giao</item>
     </string-array>
 </resources>

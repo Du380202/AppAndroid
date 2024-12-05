@@ -17,8 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookstore.R;
 import com.example.bookstore.adapter.admin.DicountBookAdapter;
 import com.example.bookstore.adapter.admin.ProductAdapter;
+import com.example.bookstore.api.admin.DiscountApi;
 import com.example.bookstore.dto.Order;
+import com.example.bookstore.model.ApiResponse;
 import com.example.bookstore.model.Discount;
+import com.example.bookstore.retrofit.ApiService;
+import com.example.bookstore.utils.DialogUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DiscountDetailActivity extends AppCompatActivity {
     RecyclerView recyclerViewProductListDiscount;
@@ -36,6 +44,12 @@ public class DiscountDetailActivity extends AppCompatActivity {
         order = (Discount) bundle.getSerializable("Object:", Discount.class);
         setControl();
         setData(order);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelDiscount(order.getDiscountId());
+            }
+        });
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,9 +59,28 @@ public class DiscountDetailActivity extends AppCompatActivity {
 
     }
 
+    private void cancelDiscount(Integer id) {
+        ApiService apiService = new ApiService();
+        DiscountApi discountApi = apiService.getRetrofit().create(DiscountApi.class);
+        discountApi.cancelDiscount(id).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ApiResponse apiResponse = response.body();
+                    DialogUtils.showSuccessDialog(DiscountDetailActivity.this, apiResponse.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable throwable) {
+
+            }
+        });
+    }
+
     private void setData(Discount discount) {
         tvDiscountName.setText(discount.getDiscountName());
-        tvDiscountPercent.setText(String.valueOf(discount.getDiscountPercent()) + "% OFF") ;
+        tvDiscountPercent.setText(String.valueOf(discount.getDiscountPercent()+ "% OFF") ) ;
         tvStatus.setText(String.valueOf(discount.getStatus()));
         backIcon = findViewById(R.id.back_icon);
         productAdapter = new DicountBookAdapter(this, discount.getBooks(), discount.getDiscountPercent());

@@ -186,8 +186,6 @@ public class AddBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LocalDate today = LocalDate.now();
-                Log.e("AuthorIds", authorIds.toString());
-                Log.d("âsasdasd", autoCompleteTextViewAuthor.getText().toString());
                 if (edtBookTitle.getText().toString().trim().isEmpty()) {
                     showError(tvErrorBookTitle, errorMessages.get(MessageCode.INPUT_TITLE_ERROR));
                 }
@@ -363,7 +361,6 @@ public class AddBookActivity extends AppCompatActivity {
     private void postData() {
         BookDto bookDto = getDataFromLayout();
         if (mUri == null) {
-            Toast.makeText(this, "Vui lòng chọn ảnh trước khi tải lên!", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -169,7 +169,7 @@ public class AddCategoryActivity extends AppCompatActivity {
             File tempFile = ImageUtils.createTempFileFromUri(AddCategoryActivity.this, mUri);
             String name = edtCategoryName.getText().toString();
             String description = edtDescription.getText().toString();
-            AuthorDto authorDto = new AuthorDto(name, description);
+            CategoryDto authorDto = new CategoryDto(name, description);
             String authorDtoJson = new Gson().toJson(authorDto);
 
             RequestBody categoryDtoBody = RequestBody.create(MediaType.parse("application/json"), authorDtoJson);

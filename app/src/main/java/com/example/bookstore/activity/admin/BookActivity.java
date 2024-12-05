@@ -2,6 +2,7 @@ package com.example.bookstore.activity.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,13 +15,19 @@ import com.example.bookstore.R;
 import com.example.bookstore.adapter.admin.BookAdapter;
 import com.example.bookstore.api.admin.BookApi;
 import com.example.bookstore.dto.BookDto;
+import com.example.bookstore.dto.MessageCode;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.retrofit.ApiService;
+import com.example.bookstore.utils.DialogUtils;
+import com.example.bookstore.utils.ExcelReader;
 import com.example.bookstore.utils.HttpCodeUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +39,7 @@ public class BookActivity extends AppCompatActivity {
     ImageView backIcon;
     BookAdapter bookAdapter;
     List<Book> bookList = new ArrayList<>();
-
+    Map<MessageCode, String> errorMessages;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +69,13 @@ public class BookActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         addNewBook = findViewById(R.id.addNewBook);
         backIcon = findViewById(R.id.back_icon);
+        InputStream inputStream = null;
+        try {
+            inputStream = getAssets().open("messagecode.xlsx");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        errorMessages = ExcelReader.readErrorMessages(inputStream);
     }
 
     private void getData() {
@@ -77,7 +91,7 @@ public class BookActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Book>> call, Throwable throwable) {
-
+                DialogUtils.showErrorDialog(BookActivity.this, errorMessages.get(MessageCode.CONNECTION_ERROR));
             }
         });
     }
